@@ -1,5 +1,12 @@
 # Kopikuy
 Aplikasi poitn of sale untuk memudahkan warung kopi dalah proses transaksi maupun laporan berbasis dekstop
+
+## Run exe
+- Download Setup [Kopikuy.exe](https://github.com/fasihll/Kopikuy/releases/download/v1.0.0-release/KopikuyApp-1.0.exe)
+- Install
+- import database from src/config/kopikuy.sql to your database mysql
+- run exe file
+
 ## Requirement
 ```bash
 JDK 17
