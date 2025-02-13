@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="283" pageHeight="450" columnWidth="243" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="no_faktur" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     category.`categoryID` AS category_categoryID,
+     category.`name` AS category_name,
+     category.`description` AS category_description,
+     detile_transaction.`orderID` AS detile_transaction_orderID,
+     detile_transaction.`transactionID` AS detile_transaction_transactionID,
+     detile_transaction.`foodID` AS detile_transaction_foodID,
+     detile_transaction.`qty` AS detile_transaction_qty,
+     detile_transaction.`created_at` AS detile_transaction_created_at,
+     detile_transaction.`updated_at` AS detile_transaction_updated_at,
+     foods.`foodID` AS foods_foodID,
+     foods.`name` AS foods_name,
+     foods.`categoryID` AS foods_categoryID,
+     foods.`price` AS foods_price,
+     foods.`food_stock` AS foods_food_stock,
+     foods.`created_at` AS foods_created_at,
+     foods.`updated_at` AS foods_updated_at,
+     karyawan.`karyawanID` AS karyawan_karyawanID,
+     karyawan.`name` AS karyawan_name,
+     karyawan.`jenis_kelamin` AS karyawan_jenis_kelamin,
+     karyawan.`tgl_lahir` AS karyawan_tgl_lahir,
+     karyawan.`alamat` AS karyawan_alamat,
+     karyawan.`no_telp` AS karyawan_no_telp,
+     transaction.`transactionID` AS transaction_transactionID,
+     transaction.`no_faktur` AS transaction_no_faktur,
+     transaction.`buyer_name` AS transaction_buyer_name,
+     transaction.`total` AS transaction_total,
+     transaction.`total_item` AS transaction_total_item,
+     transaction.`bayar` AS transaction_bayar,
+     transaction.`kembalian` AS transaction_kembalian,
+     transaction.`karyawanID` AS transaction_karyawanID,
+     transaction.`created_at` AS transaction_created_at,
+     transaction.`updated_at` AS transaction_updated_at
+FROM
+     `category` category INNER JOIN `foods` foods ON category.`categoryID` = foods.`categoryID`
+     INNER JOIN `detile_transaction` detile_transaction ON foods.`foodID` = detile_transaction.`foodID`
+     INNER JOIN `transaction` transaction ON detile_transaction.`transactionID` = transaction.`transactionID`
+     INNER JOIN `karyawan` karyawan ON transaction.`karyawanID` = karyawan.`karyawanID`
+WHERE
+transaction.`no_faktur`=$P{no_faktur}]]>
+	</queryString>
+	<field name="category_categoryID" class="java.lang.Integer"/>
+	<field name="category_name" class="java.lang.String"/>
+	<field name="category_description" class="java.lang.String"/>
+	<field name="detile_transaction_orderID" class="java.lang.Integer"/>
+	<field name="detile_transaction_transactionID" class="java.lang.Integer"/>
+	<field name="detile_transaction_foodID" class="java.lang.Integer"/>
+	<field name="detile_transaction_qty" class="java.lang.Integer"/>
+	<field name="detile_transaction_created_at" class="java.sql.Timestamp"/>
+	<field name="detile_transaction_updated_at" class="java.sql.Timestamp"/>
+	<field name="foods_foodID" class="java.lang.Integer"/>
+	<field name="foods_name" class="java.lang.String"/>
+	<field name="foods_categoryID" class="java.lang.Integer"/>
+	<field name="foods_price" class="java.lang.Double"/>
+	<field name="foods_food_stock" class="java.lang.Integer"/>
+	<field name="foods_created_at" class="java.sql.Timestamp"/>
+	<field name="foods_updated_at" class="java.sql.Timestamp"/>
+	<field name="karyawan_karyawanID" class="java.lang.Integer"/>
+	<field name="karyawan_name" class="java.lang.String"/>
+	<field name="karyawan_jenis_kelamin" class="java.lang.String"/>
+	<field name="karyawan_tgl_lahir" class="java.sql.Timestamp"/>
+	<field name="karyawan_alamat" class="java.lang.String"/>
+	<field name="karyawan_no_telp" class="java.lang.String"/>
+	<field name="transaction_transactionID" class="java.lang.Integer"/>
+	<field name="transaction_no_faktur" class="java.lang.String"/>
+	<field name="transaction_buyer_name" class="java.lang.String"/>
+	<field name="transaction_total" class="java.lang.Double"/>
+	<field name="transaction_total_item" class="java.lang.Integer"/>
+	<field name="transaction_bayar" class="java.lang.Double"/>
+	<field name="transaction_kembalian" class="java.lang.Double"/>
+	<field name="transaction_karyawanID" class="java.lang.Integer"/>
+	<field name="transaction_created_at" class="java.sql.Timestamp"/>
+	<field name="transaction_updated_at" class="java.sql.Timestamp"/>
+	<group name="transaction_no_faktur">
+		<groupExpression><![CDATA[$F{transaction_no_faktur}]]></groupExpression>
+	</group>
+	<group name="foods_name">
+		<groupExpression><![CDATA[$F{foods_name}]]></groupExpression>
+	</group>
+	<group name="foods_price">
+		<groupExpression><![CDATA[$F{foods_price}]]></groupExpression>
+	</group>
+	<group name="detile_transaction_qty">
+		<groupExpression><![CDATA[$F{detile_transaction_qty}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="243" height="36"/>
+				<textElement textAlignment="Center">
+					<font size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KOPIKUY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="243" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[WARUNG KOPI SIDOARJO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="56" width="243" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[JL. KH MOCH KHOLIL Gg IIIE/1 - 085336076077]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="96" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="243" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="55" y="11" width="188" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{transaction_no_faktur}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="11" width="55" height="20"/>
+				<textElement/>
+				<text><![CDATA[No Faktur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="55" height="20"/>
+				<textElement/>
+				<text><![CDATA[Atas nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="51" width="55" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kasir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="72" width="55" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="31" width="188" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{transaction_buyer_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="51" width="188" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{karyawan_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="71" width="188" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{transaction_created_at}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="41" height="20"/>
+				<textElement/>
+				<text><![CDATA[KODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="2" width="70" height="20"/>
+				<textElement/>
+				<text><![CDATA[NAMA ITEM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="2" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[CATEGORY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="2" width="74" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[HARGA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="21" width="243" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="41" y="0" width="70" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{foods_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="58" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{category_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="0" width="74" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{foods_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="41" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{foods_foodID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="64" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="243" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="243" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="1" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="21" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Bayar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kembali]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="100" y="1" width="143" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{transaction_total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="100" y="21" width="143" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{transaction_bayar}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="100" y="41" width="143" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{transaction_kembalian}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="36" width="243" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[KOPIKUY - JL. KH MOCH KHOLIL Gg IIIE/1 - 085336076077]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="14" width="243" height="22"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Terimakasih Telah Berbelanja]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

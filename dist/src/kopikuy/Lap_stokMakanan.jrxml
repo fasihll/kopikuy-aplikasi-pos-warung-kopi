@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="660" pageHeight="595" orientation="Landscape" columnWidth="620" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="row" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+     foods.`foodID` AS foods_foodID,
+     foods.`name` AS foods_name,
+     foods.`categoryID` AS foods_categoryID,
+     foods.`price` AS foods_price,
+     foods.`food_stock` AS foods_food_stock,
+     foods.`created_at` AS foods_created_at,
+     foods.`updated_at` AS foods_updated_at,
+     category.`categoryID` AS category_categoryID,
+     category.`name` AS category_name,
+     category.`description` AS category_description
+FROM
+     `category` category INNER JOIN `foods` foods ON category.`categoryID` = foods.`categoryID`
+ORDER BY
+    foods.food_stock ASC]]>
+	</queryString>
+	<field name="foods_foodID" class="java.lang.Integer"/>
+	<field name="foods_name" class="java.lang.String"/>
+	<field name="foods_categoryID" class="java.lang.Integer"/>
+	<field name="foods_price" class="java.lang.Double"/>
+	<field name="foods_food_stock" class="java.lang.Integer"/>
+	<field name="foods_created_at" class="java.sql.Timestamp"/>
+	<field name="foods_updated_at" class="java.sql.Timestamp"/>
+	<field name="category_categoryID" class="java.lang.Integer"/>
+	<field name="category_name" class="java.lang.String"/>
+	<field name="category_description" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126"/>
+				<imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="164" y="11" width="309" height="58"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[KOPIKUY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="164" y="69" width="309" height="26"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[LAPORAN STOK MAKANAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="164" y="95" width="309" height="32"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[KOPIKUY APLIKASI POINT OF SALE WARUNG KOPI - 085336076077]]></text>
+			</staticText>
+			<image>
+				<reportElement x="442" y="-72" width="219" height="209"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="136" width="619" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="512" y="116" width="68" height="20"/>
+				<textElement/>
+				<text><![CDATA[TOTAL DATA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="580" y="117" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{row}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="620" height="16" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<staticText>
+					<reportElement x="1" y="0" width="97" height="16"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[KODE MAKANAN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="98" y="0" width="126" height="16"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[NAMA MAKANAN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="442" y="0" width="89" height="16"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[STOK MAKANAN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="531" y="0" width="89" height="16"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TANGGAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="224" y="0" width="102" height="16"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CATEGORY ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="326" y="0" width="116" height="16"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[HARGA]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="620" height="21"/>
+				<textField>
+					<reportElement x="1" y="1" width="97" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{foods_foodID}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="98" y="1" width="126" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{foods_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="224" y="1" width="102" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{category_name}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="326" y="0" width="116" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{foods_price}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="442" y="1" width="89" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{foods_food_stock}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="531" y="1" width="89" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{foods_updated_at}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="8" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="620" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="667" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="601" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="521" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
